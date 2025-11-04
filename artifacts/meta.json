@@ -1,0 +1,1 @@
+{"numeric_features": ["hours_study", "attendance", "sleep_hours", "internet_hours", "past_score"], "categorical_features": ["gender", "parent_education"]}

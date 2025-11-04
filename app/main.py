@@ -7,7 +7,10 @@ import time
 
 app = FastAPI(title='Student AI Learning Assistant')
 
-origins = ["http://localhost:3000"]
+origins = [
+    "http://localhost:3000",  
+    "https://studentaifrontend.vercel.app"  
+]
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,6 +19,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
 
 @app.get("/")
 def root():

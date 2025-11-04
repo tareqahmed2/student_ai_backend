@@ -1,12 +1,22 @@
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
-client = MongoClient(MONGO_URI)
-db = client['student_ai']
 
+try:
+    # Connect to MongoDB
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=10000, tls=True)
+    # Test connection
+    client.admin.command("ping")
+    print("✅ Connected to MongoDB successfully!")
+except Exception as e:
+    print("❌ MongoDB connection failed:", e)
+    raise e
+
+db = client['student_ai']
 students_col = db['students']
 predictions_col = db['predictions']
 
